@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/newTrainingFragment"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="Criar Um Treino" />
+    <item
+        android:id="@+id/doTrainingFragment"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="Pagar o de Hoje" />
+    <item
+        android:id="@+id/editTrainingsFragment"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="Editar Ultimo Treinamento" />
+    <item
+        android:id="@+id/chooseTrainingFragment"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Selecionar um Treino" />
+</menu>

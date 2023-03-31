@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mynavigation"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/newTrainingFragment"
+        android:name="com.tierriapps.organizadordetreino.NewTrainingFragment"
+        android:label="Novo Treino"
+        tools:layout="@layout/fragment_new_training" >
+        <action
+            android:id="@+id/action_newTrainingFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.tierriapps.organizadordetreino.MainFragment"
+        android:label="Treino Atual"
+        tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/doTrainingFragment"
+        android:name="com.tierriapps.organizadordetreino.DoTrainingFragment"
+        android:label="Hora do Treino"
+        tools:layout="@layout/fragment_do_training" >
+        <action
+            android:id="@+id/action_doTrainingFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/doTrainingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editTrainingsFragment"
+        android:name="com.tierriapps.organizadordetreino.EditTrainingsFragment"
+        android:label="Editar Treino"
+        tools:layout="@layout/fragment_edit_trainings" />
+    <fragment
+        android:id="@+id/chooseTrainingFragment"
+        android:name="com.tierriapps.organizadordetreino.ChooseTrainingFragment"
+        android:label="Meus Treinos"
+        tools:layout="@layout/fragment_choose_training" />
+</navigation>

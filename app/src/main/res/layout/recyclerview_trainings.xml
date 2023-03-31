@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_crepusculo">
+
+    <EditText
+        android:id="@+id/textviewTrainingName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_training"
+        android:fontFamily="@font/aclonica"
+        android:gravity="left"
+        android:hint="Name of the division"
+        android:inputType="text"
+        android:textColor="@color/orange_star"
+        android:textColorHint="@color/weak_orange_star"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/textviewTrainingDescrition"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/deepocean"
+        android:gravity="left"
+        android:hint="Descrition"
+        android:inputType="text"
+        android:textColor="@color/orange_star"
+        android:textColorHint="@color/weak_orange_star"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textviewTrainingName" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerviewDivisions"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textviewTrainingDescrition" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonNewDivision"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="new division"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonDeleteLastDivision"
+        app:layout_constraintEnd_toStartOf="@+id/buttonDeleteLastDivision"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonDeleteLastDivision"
+        style="@style/stylebutton2" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonDeleteLastDivision"
+        style="@style/stylebutton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="delete last division"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonNewDivision"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerviewDivisions" />
+</androidx.constraintlayout.widget.ConstraintLayout>
