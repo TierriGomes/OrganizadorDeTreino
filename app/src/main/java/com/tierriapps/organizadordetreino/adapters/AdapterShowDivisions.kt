@@ -126,7 +126,6 @@ class AdapterShowDivisions(
                                     c++
                                 }
                             }
-
                             Toast.makeText(binding.root.context, "feito", Toast.LENGTH_SHORT)
                             }
                         snackbar.show()

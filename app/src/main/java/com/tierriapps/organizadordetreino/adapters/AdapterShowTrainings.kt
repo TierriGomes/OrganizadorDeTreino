@@ -40,7 +40,7 @@ class AdapterShowTrainings(
     }
 
     // RECEBE UMA LISTA DE MyTraining ADICIONA A  trainingsList E NOTIFICA AS MUDANÇAS
-    fun getTrainings(trainings:List<MyTraining> = listOf(MyTraining(name = "null", descrition = "null"))){
+    fun getTrainings(trainings:List<MyTraining> = listOf(MyTraining(name = "", descrition = ""))){
         this.trainingsList.addAll(trainings)
         notifyItemInserted(trainingsList.lastIndex)
         notifyItemChanged(trainingsList.lastIndex)
@@ -125,7 +125,6 @@ class AdapterShowTrainings(
                     if(i == KeyEvent.KEYCODE_ENTER && keyEvent.action == KeyEvent.ACTION_UP){
                         trainingDescrition.isEnabled = false
                         myTraining.descrition = trainingDescrition.text.toString()
-                        Log.d("myyad ", myTraining.descrition)
                         return@setOnKeyListener false
                     }else {
                         return@setOnKeyListener true

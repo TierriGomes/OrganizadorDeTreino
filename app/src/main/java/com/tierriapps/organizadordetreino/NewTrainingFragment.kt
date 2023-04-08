@@ -52,31 +52,9 @@ class NewTrainingFragment : Fragment() {
         recyclerView.adapter = adapter
         binding.buttonSave.setOnClickListener {
             val iten = adapter.returnTraining()[0]
-            if(vasculhaItem(iten)){
-                myViewModel.insert(iten)
-                val nav = findNavController()
-                nav.navigate(R.id.action_newTrainingFragment_to_mainFragment)
-            }
+            myViewModel.insert(iten)
+            val nav = findNavController()
+            nav.navigate(R.id.action_newTrainingFragment_to_mainFragment)
         }
-    }
-
-    private fun vasculhaItem(iten: MyTraining): Boolean {
-        if(iten.descrition.trim() == "" || iten.name.trim() == ""){
-            Log.d("erro", "primeiro bloco")
-            return false
-        }
-        for(i in iten.divisionsList){
-            if (i.descrition == ""){
-                Log.d("erro", "segundo bloco")
-                return false
-            }
-            for (e in i.exercicesList){
-                if (e.rest?.toInt() == 0 || e.series?.toInt() == 0 || e.exerciceName == ""){
-                    Log.d("erro", "terceiro bloco${e.toString()} eee ${i.exercicesList.indexOf(e)}")
-                    return false
-                }
-            }
-        }
-        return true
     }
 }

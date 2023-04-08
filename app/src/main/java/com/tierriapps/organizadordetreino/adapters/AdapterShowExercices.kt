@@ -114,29 +114,22 @@ class AdapterShowExercices(val exerciceList: MutableList<MyExercice>,
                 rest.setOnKeyListener { view, i, keyEvent ->
                     if (i == KeyEvent.KEYCODE_ENTER && keyEvent.action == KeyEvent.ACTION_UP) {
                         if(exerciceName.text.toString() == "" || series.text.toString() == "" || rest.text.toString() == ""){
-                            Toast.makeText(binding.root.context, "nao fode irmao, preenche tudo ae", Toast.LENGTH_LONG).show()
+                            Toast.makeText(binding.root.context, "Ainda há campos vazios", Toast.LENGTH_LONG).show()
                         }else {
-                            exerciceName.isEnabled = false
-                            series.isEnabled = false
-                            rest.isEnabled = false
-
                             exercice.exerciceName = exerciceName.text.toString().trim()
                             exercice.series = series.text.toString().toByteOrNull() ?: 0
                             if (exercice.series!! > 6){
                                 exercice.series = 6
                                 Toast.makeText(binding.root.context,
-                                    "Max number of series is six per exercice\n add a new exercice",
+                                    "Max number of series is six per exercice",
                                 Toast.LENGTH_SHORT).show()
-                                series.isEnabled = true
-                                rest.isEnabled = true
                             }
                             exercice.rest = rest.text.toString().toShortOrNull() ?: 0
                             if (exercice.rest!! > 300){
                                 exercice.rest = 300
                                 Toast.makeText(binding.root.context,
-                                "Max time of rest is 300 seconds\n are you sleeping during the training?",
+                                "Max time of rest is 300 seconds",
                                 Toast.LENGTH_LONG).show()
-                                rest.isEnabled = true
                             }
                             return@setOnKeyListener true
                         }
