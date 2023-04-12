@@ -93,7 +93,7 @@ class DoTrainingFragment : Fragment() {
         binding.buttonNotifycation.setOnClickListener {
             it.visibility = View.GONE
             binding.buttonGetData.visibility = View.VISIBLE
-            notificationUtils = NotificationDoTraining(requireContext(), division!!)
+            notificationUtils = NotificationDoTraining(requireContext().applicationContext, division!!)
             notificationUtils?.createNotification()
         }
         binding.buttonSaveAndQuit.setOnClickListener {
@@ -129,8 +129,8 @@ class DoTrainingFragment : Fragment() {
         // OBTEM A LISTA DE REPETIÇOES QUE A NOTIFICATION SALVOU NO SHAREDPREFERENCES
         val stringList = sharedPreferencesNotification.getString("stringList", "")
         val gson = Gson()
-        val lists = gson.fromJson(stringList, object : TypeToken<List<List<Float>>>() {}.type
-        ) as MutableList<MutableList<Float>>
+        val lists = gson.fromJson(stringList, object : TypeToken<List<List<String>>>() {}.type
+        ) as MutableList<MutableList<String>>
 
         // SE A LISTA ESTIVER OK, PASSA OS DADOS DELA PRA A POSIÇÃO CORRETA NA DIVISION SE A MESMA
         // TAMBEM ESTIVER OK
@@ -140,14 +140,6 @@ class DoTrainingFragment : Fragment() {
             }
             adapter = AdapterShowDivisions(mutableListOf(division!!), true, true)
             recyclerView.adapter = adapter
-        }
-    }
-    override fun onDestroyView() {
-        super.onDestroyView()
-        try{
-            notificationUtils!!.onDestroyNotification()
-        }catch (e: Exception){
-            Log.d("mytag", e.toString())
         }
     }
 }

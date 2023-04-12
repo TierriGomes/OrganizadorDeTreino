@@ -3,17 +3,17 @@ package com.tierriapps.organizadordetreino
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.navigation.NavigationView
 import com.tierriapps.organizadordetreino.databinding.ActivityMainBinding
-import com.tierriapps.organizadordetreino.utils.SecondsToTime
+import com.tierriapps.organizadordetreino.notifications.NotificationDoTraining
 
 
 class MainActivity : AppCompatActivity() {
@@ -37,35 +37,30 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        // DATA
-        val sharedPreferences = this.getSharedPreferences("NOTIFICATION_DATA", Context.MODE_PRIVATE)
-        val totalSavedSeconds = SecondsToTime.segundosParaHorario(sharedPreferences.getInt("totalSavedSeconds", 0))
-        var totalDaysTrained = sharedPreferences.getInt("totalDaysTrained", 0)
-        val lastTrainingTime = SecondsToTime.segundosParaHorario(sharedPreferences.getInt("lastTrainingTime", 0))
+
 
         //NAVIGATION AND TOOLBAR: def functions
         navController = findNavController(binding.fragmentcontainerview.id)
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         NavigationUI.setupWithNavController(navigationView, navController)
-
-        val header = binding.navigationview.getHeaderView(0)
-        val viewImage = header.findViewById<ImageView>(R.id.imageViewProfile)
-        val textviewDiasEHoras = header.findViewById<TextView>(R.id.textViewDaysAndHours)
-        val textviewLastTrainingTime = header.findViewById<TextView>(R.id.textViewLastTrainingTime)
-
-        textviewDiasEHoras.text = "Dias Treinados:\n${totalDaysTrained}\nHoras:\n${totalSavedSeconds}"
-        textviewLastTrainingTime.text = "Tempo do ultimo treino:\n${lastTrainingTime}"
-        when(totalDaysTrained){
-            in 0..29 -> viewImage.setImageResource(R.drawable.galodecalca)
-            in 30..89 -> viewImage.setImageResource(R.drawable.galobombado)
-            in 90..179 -> viewImage.setImageResource(R.drawable.barata)
-            in 180..360 -> viewImage.setImageResource(R.drawable.strong)
-            else -> viewImage.setImageResource(R.drawable.brolly)
-        }
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController, drawerLayout) || super.onSupportNavigateUp()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("carai", "ondestroy chamado")
+        try {
+            NotificationDoTraining.finishNotification(applicationContext)
+            Toast.makeText(
+                this, "a notificaçao e activity foi destruida", Toast.LENGTH_SHORT).show()
+            Log.d("carai", "notificaçao destruida")
+        }catch (e: Exception){
+            Toast.makeText(
+                this, "Nao destruiu nenhuma notification: ${e}", Toast.LENGTH_LONG).show()
+            Log.d("carai", "falhou na destruiçao: ${e}")
+        }
     }
 }

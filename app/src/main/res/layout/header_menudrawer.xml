@@ -13,31 +13,19 @@
         android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/strong" />
+        app:srcCompat="@drawable/galodecalca" />
 
     <TextView
-        android:id="@+id/textViewDaysAndHours"
-        android:layout_width="0dp"
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
         android:fontFamily="@font/berkshire_swash"
-        android:padding="5dp"
-        android:text="TextView"
-        android:textColor="@color/orange_star"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="→ Treinar\n→ Comer\n→ Dormir"
+        android:textColor="@color/purple_200"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewProfile"
         app:layout_constraintStart_toEndOf="@+id/imageViewProfile"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textViewLastTrainingTime"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/amita"
-        android:padding="5dp"
-        android:text="TextView"
-        android:textColor="@color/orange_star"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageViewProfile"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDaysAndHours" />
 </androidx.constraintlayout.widget.ConstraintLayout>

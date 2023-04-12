@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.google.android.material.snackbar.Snackbar
 import com.tierriapps.organizadordetreino.databinding.RecyclerviewRepsBinding
 
-class AdapterShowReps(val mapOfReps: MutableMap<Int, MutableList<Float>> = mutableMapOf(),
+class AdapterShowReps(val mapOfReps: MutableMap<Int, MutableList<String>> = mutableMapOf(),
                       val series: Byte, val istraining: Boolean = false,
                       val modeCreator: Boolean = false): RecyclerView.Adapter<ViewHolder>() {
     init {
@@ -42,7 +42,7 @@ class AdapterShowReps(val mapOfReps: MutableMap<Int, MutableList<Float>> = mutab
                 myViewHolder.bind(mapOfReps[position + 1], mapOfReps)
             }
         }else{
-            myViewHolder.bind(mutableListOf(0f,0f,0f,0f,0f,0f), mapOfReps)
+            myViewHolder.bind(mutableListOf("", "", "", "", "", ""), mapOfReps)
         }
     }
     inner class MyViewHolder(view: View,
@@ -66,7 +66,7 @@ class AdapterShowReps(val mapOfReps: MutableMap<Int, MutableList<Float>> = mutab
         }
 
         // BINDANDO OS ITENS PELA LISTA
-        fun bind(list: MutableList<Float>?, mapOfReps: MutableMap<Int, MutableList<Float>>){
+        fun bind(list: MutableList<String>?, mapOfReps: MutableMap<Int, MutableList<String>>){
             if(!istraining && list != null) {
                 for (c in list.withIndex()) {
                     textList[c.index].setText(c.value.toString())
@@ -78,13 +78,13 @@ class AdapterShowReps(val mapOfReps: MutableMap<Int, MutableList<Float>> = mutab
                     if(list!!.size > c){
                         textList[c].setText(list!![c].toString())
                     }else{
-                        list!!.add(0f)
+                        list!!.add("0")
                     }
                     textList[c].isEnabled = true
                     textList[c].setOnKeyListener { view, i, keyEvent ->
                         if(i == KeyEvent.KEYCODE_ENTER && keyEvent.action == KeyEvent.ACTION_UP){
                             textList[c].isEnabled = false
-                            list[c] = (textList[c].text.toString().toFloatOrNull()?:0f)
+                            list[c] = (textList[c].text.toString())
                             return@setOnKeyListener true
                         }
                         return@setOnKeyListener false
@@ -99,7 +99,7 @@ class AdapterShowReps(val mapOfReps: MutableMap<Int, MutableList<Float>> = mutab
                     textList[c].setOnKeyListener { view, i, keyEvent ->
                         if(i == KeyEvent.KEYCODE_ENTER && keyEvent.action == KeyEvent.ACTION_UP){
 
-                            list?.set(c, (textList[c].text.toString().toFloatOrNull()?:0f))
+                            list?.set(c, textList[c].text.toString())
                             textList[c].isEnabled = false
                             return@setOnKeyListener true
                         }

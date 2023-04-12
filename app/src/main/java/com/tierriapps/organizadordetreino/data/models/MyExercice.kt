@@ -4,5 +4,5 @@ data class MyExercice(
     var exerciceName: String,
     var series: Byte?,
     var rest: Short?,
-    val repsOfDay: MutableMap<Int, MutableList<Float>> = mutableMapOf()
+    val repsOfDay: MutableMap<Int, MutableList<String>> = mutableMapOf()
 )
